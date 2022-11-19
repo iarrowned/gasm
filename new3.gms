@@ -12,10 +12,6 @@ Sets
     proizvodstvo производство молока /
         milk
     /
-    overprice цена сверх договора /
-        overprice
-    /
-
 ;
 Parameters
 PriceParamProds(products) Стоимость перевозки 1т подукции на 1км /
@@ -30,6 +26,14 @@ ProizvodstvoParam(locations) Производство молочного сыр�
         klep 5.5
         kasim 11.2
         shil 11.3
+    /
+OverPriceParam(locations) /
+        klep 15
+        kasim 12
+        shil 12
+    /
+LimitParam(proizvodstvo) /
+        milk 1400
     /
 ;
 
@@ -52,6 +56,13 @@ klep        0       80
 kasim       80      0       70
 shil                70      0;
 
-Table OverPriceTable(overprice, locations) Цены на сырье сверх договора
-            klep    kasim   shil
-overprice   15      12      12
+Table LimitsTable(proizvodstvo, products)
+            milk    kefir   smetana
+milk        1.01    1.01    9.45;
+
+
+positive variables x(products);
+equations
+restrictionsMilk(proizvodstvo) restricitons;
+                                                            
+restrictionsMilk(proizvodstvo).. sum(products, LimitsTable(proizvodstvo, products) * x(products)) =l= LimitParam(proizvodstvo);
