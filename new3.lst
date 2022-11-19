@@ -1,0 +1,78 @@
+GAMS 41.1.0  1682d454 Oct 28, 2022          WEX-WEI x86 64bit/MS Windows - 11/19/22 09:51:11 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  Sets
+   2      locations районы /
+   3          klep,
+   4          kasim,
+   5          shil
+   6      /
+   7      products спрос на продукцию /
+   8          milk,
+   9          kefir,
+  10          smetana
+  11      /
+  12      proizvodstvo производство молока /
+  13          milk
+  14      /
+  15      overprice цена сверх договора /
+  16          overprice
+  17      /
+  18   
+  19  ;
+  20  Parameters
+  21  PriceParamProds(products) Стоимость перевозки 1т подукции на 1км /
+  22          milk 45
+  23          kefir 45
+  24          smetana 50
+  25      /
+  26  PriceParamMilk(proizvodstvo) Стоимость перевозки 1т молочного сырья на 1км /
+  27          milk 60
+  28      /
+  29  ProizvodstvoParam(locations) Производство молочного сырья в районах /
+  30          klep 5.5
+  31          kasim 11.2
+  32          shil 11.3
+  33      /
+  34  ;
+  35   
+  36   
+  37  Table SprosTable(products, locations) Таблица спроса на продукцию в районах
+  38              klep    kasim   shil
+  39  milk       4.5     10.0    7.8
+  40  kefir      1.0     2.3     1.9
+  41  smetana    0.4     0.6     0.5;
+  42   
+  43   
+  44  * Мб оставить только параметром
+  45  Table ProizvodstvoTable(proizvodstvo, locations) Производство молочного сырья в районах
+  46              klep    kasim   shil
+  47  milk        5.5     11.3    11.3;
+  48   
+  49  Table DistanceTable(locations, locations) Расстояния между районами
+  50              klep    kasim   shil
+  51  klep        0       80
+  52  kasim       80      0       70
+  53  shil                70      0;
+  54   
+  55  Table OverPriceTable(overprice, locations) Цены на сырье сверх договора
+  56              klep    kasim   shil
+  57  overprice   15      12      12
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  41.1.0 1682d454 WEX-WEI
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  41.1.0 1682d454 WEX-WEI
+
+
+USER: GAMS Demo license for kirill kuznetsov         G221112|0002CO-GEN
+      timka, Greenland                                         DL079049
+
+
+**** FILE SUMMARY
+
+Input      C:\Users\14kra\OneDrive\Documents\GAMS\Studio\workspace\new3.gms
+Output     C:\Users\14kra\OneDrive\Documents\GAMS\Studio\workspace\new3.lst
